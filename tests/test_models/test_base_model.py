@@ -46,6 +46,12 @@ class TestBaseModel(unittest.TestCase):
         """Tests the id attribute"""
         self.assertIsInstance(self.instance.id, str)
 
+    def test_created_at(self):
+        """Tests the created_at attribute"""
+        self.assertIsInstance(self.instance.created_at, datetime.datetime)
+        expected_created_at = datetime.datetime(2024, 6, 29, 10, 0, 0)
+        self.assertEqual(self.instance.created_at, expected_created_at)
+
 
 if __name__ == '__main__':
     unittest.main()
