@@ -17,6 +17,11 @@ class TestBaseModel(unittest.TestCase):
                 age=19
                 )
 
+    def test_str_representation(self):
+        """Tests the __str__ method"""
+        expected_str = "[BaseModel] (123) {'id': '123', 'created_up: '2024-06-29T10:00:00', 'updated_at': '2024-06-29T12:00:00', 'name': 'Abdullah Hussein', 'age': 19}"
+        self.assertEqual(str(self.instance), expected_str)
+
     def test_save(self):
         """Tests the save method"""
         first_updated_at = self.instance.updated_at
@@ -36,6 +41,10 @@ class TestBaseModel(unittest.TestCase):
                 }
         instance_dict = self.instance.to_dict()
         self.assertEqual(instance_dict, expected_dict)
+
+    def test_id(self):
+        """Tests the id attribute"""
+        self.assertIsInstance(self.instance.id, str)
 
 
 if __name__ == '__main__':
