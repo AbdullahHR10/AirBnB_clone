@@ -2,6 +2,7 @@
 """Module for the base model"""
 import uuid
 import datetime
+import models
 
 
 class BaseModel():
