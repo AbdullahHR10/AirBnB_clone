@@ -37,6 +37,8 @@ class HBNBCommand(cmd.Cmd):
         else:
             if args[0] == "BaseModel":
                 new_instance = BaseModel()
+            elif args[0] == "User":
+                new_instance = User()
             new_instance.save()
             print(new_instance.id)
 
