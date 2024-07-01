@@ -4,13 +4,18 @@ import cmd
 from models import storage
 from models.base_model import BaseModel
 from models.user import User
+from models.place import Place
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.review import Review
 import shlex
 
 
 class HBNBCommand(cmd.Cmd):
     """Console class"""
     prompt = '(hbnb) '
-    valid_classes = {"BaseModel", "User"}
+    valid_classes = {"BaseModel", "User", "Place", "State", "City", "Amenity", "Review"}
 
     def do_quit(self, arg):
         """Exits the program"""
@@ -40,6 +45,17 @@ class HBNBCommand(cmd.Cmd):
                 new_instance = BaseModel()
             elif args[0] == "User":
                 new_instance = User()
+            elif args[0] == "State":
+                new_instance = State()
+            elif args[0] == "City":
+                new_instance = City()
+            elif args[0] == "Amenity":
+                new_instance = Amenity()
+            elif args[0] == "Place":
+                new_instance = Place()
+            elif args[0] == "Review":
+                new_instance = Review()
+
             new_instance.save()
             print(new_instance.id)
 
