@@ -7,7 +7,7 @@ import shlex
 class HBNBCommand(cmd.Cmd):
     """Console class"""
     prompt = '(hbnb) '
-    __classes = ["BaseModel"]
+    __classes = {"BaseModel"}
     def do_quit(self, arg):
         """Exits the program"""
         return True
@@ -28,13 +28,12 @@ class HBNBCommand(cmd.Cmd):
         """Creates a new instance of BaseModel, saves it (to the JSON file)"""
         if not arg:
             print("** class name missing **")
-        
         class_name = arg.split()[0]
-        elif class_name not in HBNBCommand.__classes:
+        if class_name not in HBNBCommand.__classes:
             print("** class doesn't exist **")
         else:
-            new_instance = storage.classes[class_name]()
-            new_instance.save()
+            print(eval(argl[0])().id)
+            storage.save()
 
     def do_show(self, arg):
         """Prints the string representation of an instance"""
