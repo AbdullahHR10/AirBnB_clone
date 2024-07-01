@@ -2,12 +2,14 @@
 """Module that contains the entry point of the command interpreter"""
 import cmd
 import models
-
+import shlex
 
 class HBNBCommand(cmd.Cmd):
     """Console class"""
     prompt = '(hbnb) '
-
+    __classes = {
+            "BaseModel"
+            }
     def do_quit(self, arg):
         """Exits the program"""
         return True
