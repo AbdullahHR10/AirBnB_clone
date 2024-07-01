@@ -10,7 +10,8 @@ class HBNBCommand(cmd.Cmd):
     """Console class"""
     prompt = '(hbnb) '
     valid_classes = {"BaseModel"}
-    def do_quit(self, arg):
+
+def do_quit(self, arg):
         """Exits the program"""
         return True
 
@@ -55,6 +56,25 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
             else:
                 print(obj)
+
+    def do_destroy(self, arg):
+        """Deletes an instance based on the class name and id"""
+        args = shlex.split(arg)
+        if len(args) == 0:
+            print("** class name missing **")
+        elif args[0] not in self.valid_classes:
+            print("** class doesn't exist **")
+        elif len(args) < 2:
+            print("** instance id missing **")
+        else:
+            key = "{}.{}".format(args[0], args[1])
+            obj = storage.all().get(key)
+            if obj is None:
+                print("** no instance found **")
+            else:
+                del storage.all()[key]
+                storage.save()
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
