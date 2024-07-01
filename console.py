@@ -41,7 +41,20 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, arg):
         """Prints the string representation of an instance"""
-
+        args = shlex.split(arg)
+        if len(args) == 0:
+            print("** class name missing **")
+        elif args[0] not in self.valid_classes:
+            print("** class doesn't exist **")
+        elif len(cmds) < 2:
+            print("** instance id missing **")
+        else:
+            key = "{}.{}".format(args[0], args[1])
+            obj = storage.all().get(key)
+            if obj is None:
+                print("** no instance found **")
+            else:
+                print(obj)
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
