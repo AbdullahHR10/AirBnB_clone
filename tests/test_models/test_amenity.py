@@ -2,6 +2,7 @@
 """Module for testing Amenity class"""
 from models.amenity import Amenity
 
+
 class TestAmenity(unittest.TestCase):
     """Tests the Amenity class"""
 
