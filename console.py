@@ -9,7 +9,7 @@ import shlex
 class HBNBCommand(cmd.Cmd):
     """Console class"""
     prompt = '(hbnb) '
-    valid_classes = {"BaseModel"}
+    valid_classes = {"BaseModel", "User"}
 
     def do_quit(self, arg):
         """Exits the program"""
