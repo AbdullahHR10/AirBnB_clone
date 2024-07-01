@@ -3,6 +3,11 @@
 
 from models.base_model import BaseModel
 from models.user import User
+from models.place import Place
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.review import Review
 import json
 
 
@@ -45,6 +50,16 @@ class FileStorage:
                         cls = BaseModel
                     elif cls_name == 'User':
                         cls = User
+                    elif cls_name == 'State':
+                        cls = State
+                    elif cls_name == 'City':
+                        cls = City
+                    elif cls_name == 'Amenity':
+                        cls = Amenity
+                    elif cls_name == 'Place':
+                        cls = Place
+                    elif cls_name == 'Review':
+                        cls = Review
                     else:
                         cls = globals()[cls_name]
                     self.new(cls(**value))
