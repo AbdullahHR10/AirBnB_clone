@@ -40,7 +40,12 @@ class FileStorage:
                 obj_dict = json.load(file)
                 for key, value in obj_dict.items():
                     cls_name = value['__class__']
-                    cls = globals()[cls_name]
+                    if cls_name == 'BaseModel':
+                        cls = BaseModel
+                    elif cls_name == 'User':
+                        cls = User
+                    else:
+                        cls = globals()[cls_name]
                     self.new(cls(**value))
         except FileNotFoundError:
-            pass
+            return
