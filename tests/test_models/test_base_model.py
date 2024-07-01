@@ -19,7 +19,10 @@ class TestBaseModel(unittest.TestCase):
 
     def test_str_representation(self):
         """Tests the __str__ method"""
-        expected_str = "[BaseModel] (123) {'id': '123', 'created_up: '2024-06-29T10:00:00', 'updated_at': '2024-06-29T12:00:00', 'name': 'Abdullah Hussein', 'age': 19}"
+        expected_str = "[BaseModel](123) {'id': '123', 'created_up:
+                                          '2024-06-29T10:00:00', 'updated_at':
+                                          '2024-06-29T12:00:00', 'name':
+                                          'Abdullah Hussein', 'age': 19}"
         self.assertEqual(str(self.instance), expected_str)
 
     def test_save(self):
