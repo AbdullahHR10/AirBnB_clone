@@ -7,9 +7,7 @@ import shlex
 class HBNBCommand(cmd.Cmd):
     """Console class"""
     prompt = '(hbnb) '
-    __classes = {
-            "BaseModel"
-            }
+    __classes = ["BaseModel"]
     def do_quit(self, arg):
         """Exits the program"""
         return True
@@ -37,7 +35,6 @@ class HBNBCommand(cmd.Cmd):
         else:
             new_instance = storage.classes[class_name]()
             new_instance.save()
-            print(new_instance.id)
 
     def do_show(self, arg):
         """Prints the string representation of an instance"""
