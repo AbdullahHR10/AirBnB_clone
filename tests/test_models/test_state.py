@@ -5,5 +5,7 @@ from models.state import State
 
 class TestState(unittest.TestCase):
     """Tests State"""
-    state_instance = State()
-    self.assertEqual(state_instance.name, "")
+    def test_state_initialization(self):
+        """Test initialization of State class"""
+        state_instance = State()
+        self.assertEqual(state_instance.name, "")
