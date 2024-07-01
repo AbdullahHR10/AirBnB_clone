@@ -11,7 +11,7 @@ class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb) '
     valid_classes = {"BaseModel"}
 
-def do_quit(self, arg):
+    def do_quit(self, arg):
         """Exits the program"""
         return True
 
