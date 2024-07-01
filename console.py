@@ -28,11 +28,11 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, arg):
         """Creates a new instance of BaseModel, saves it (to the JSON file)"""
-        args = shlex.split(arg
+        args = shlex.split(arg)
         if len(args) == 0:
             print("** class name missing **")
         elif args[0] not in self.valid_classes:
-            print("** class doesn't exist **"
+            print("** class doesn't exist **")
         else:
             if args[0] == "BaseModel":
                 new_instance = BaseModel()
