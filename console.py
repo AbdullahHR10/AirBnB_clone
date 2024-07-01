@@ -111,13 +111,14 @@ class HBNBCommand(cmd.Cmd):
                 obj = objs[key]
                 attr_name = args[2]
                 attr_value = args[3]
-                try:
-                    attr_value = eval(attr_value)
-                except Exception:
-                    pass
-                setattr(obj, attr_name, attr_value)
-                obj.save
-
+        try:
+            attr_type = type(getattr(obj, attr_name))
+            attr_value = attr_type(attr_value_str)
+        except (AttributeError, ValueError) as e:
+            print("** invalid value type **")
+            return
+        setattr(obj, attr_name, attr_value)
+        obj.save()
 
 
 if __name__ == '__main__':
