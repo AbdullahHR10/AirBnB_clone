@@ -75,6 +75,20 @@ class HBNBCommand(cmd.Cmd):
                 del storage.all()[key]
                 storage.save()
 
+    def do_all(self, arg):
+        """Prints all string representation of all instances"""
+        objs = storage.all()
+        args = shlex.split(arg)
+        if len(args) == 0:
+            for key, value in objs.items():
+                print(str(value))
+        elif args[0] not in self.valid_classes:
+            print("** class doesn't exist **")
+        else:
+            for key, value in objs.items():
+                if key.split('.')[0] == args[0]:
+                    print(str(value))
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
