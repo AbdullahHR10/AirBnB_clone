@@ -48,4 +48,4 @@ class FileStorage:
                         cls = globals()[cls_name]
                     self.new(cls(**value))
         except FileNotFoundError:
-            return
+            pass
