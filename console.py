@@ -90,8 +90,7 @@ class HBNBCommand(cmd.Cmd):
                     print(str(value))
 
     def do_update(self, arg):
-        """Updates an instance based on the class name and id
-        by adding or updating attribute"""
+        """Updates an instance based on the class name and id"""
         args = shlex.split(arg)
         if len(args) == 0:
             print("** class name missing **")
@@ -105,20 +104,19 @@ class HBNBCommand(cmd.Cmd):
             print("** value missing **")
         else:
             objs = storage.all()
-            if objs is None:
+            key = "{}.{}".format(args[0], args[1])
+            if key not in objs:
                 print("** no instance found **")
             else:
                 obj = objs[key]
                 attr_name = args[2]
                 attr_value = args[3]
-        try:
-            attr_type = type(getattr(obj, attr_name))
-            attr_value = attr_type(attr_value_str)
-        except (AttributeError, ValueError) as e:
-            print("** invalid value type **")
-            return
-        setattr(obj, attr_name, attr_value)
-        obj.save()
+                try:
+                    attr_value = eval(attr_value)
+                except Exception:
+                    pass
+                setattr(obj, attr_name, attr_value)
+                obj.save()
 
 
 if __name__ == '__main__':
