@@ -6,6 +6,7 @@ from shlex import split
 from models import storage
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
+from models.user import User
 
 
 def parse(arg):
@@ -29,7 +30,7 @@ def parse(arg):
 class HBNBCommand(cmd.Cmd):
     """Contains the entry point of the command interpreter"""
     prompt = "(hbnb) "
-    classes = ["BaseModel"]
+    classes = ["BaseModel", "User"]
 
     def do_quit(self, line):
         """Exits the program"""
