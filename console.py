@@ -25,6 +25,7 @@ def parse(arg):
         retl.append(curly_braces.group())
         return retl
 
+
 class HBNBCommand(cmd.Cmd):
     """Contains the entry point of the command interpreter"""
     prompt = "(hbnb) "
@@ -42,15 +43,6 @@ class HBNBCommand(cmd.Cmd):
         """Handles empty lines"""
         pass
 
-    def parse(self, line):
-        """Parses the input line"""
-        line = line.strip()
-        parts = line.split()
-        if parts:
-            command = parts[0]
-        else:
-            command = None
-        
     def do_create(self, line):
         """ Creates a new instance of BaseModel,
         saves it (to the JSON file) and prints the id"""
@@ -122,6 +114,34 @@ class HBNBCommand(cmd.Cmd):
                 if key.startswith(class_name + '.'):
                     instances.append(str(obj))
         print(instances)
+
+    def do_update(self, line):
+        """Updates an instance based on the class name and id
+        by adding or updating attribute"""
+        args = parse(line)
+        if len(args) == 0:
+            print("** class name missing **")
+        elif len(args) == 1:
+            print("** instance id missing **")
+        elif len(args) == 2:
+            print("** attribute name missing **")
+        elif len(args) == 3:
+            print("** value missing **")
+        elif args[0] not in HBNBCommand.classes:
+            print("** class doesn't exist **")
+        else:
+            class_name = args[0]
+            instance_id = args[1]
+            attr_name = args[2]
+            attr_value = args[3]
+            key = f"{class_name}.{instance_id}"
+            all_objects = storage.all()
+            if key in all_objects:
+                instance = all_objects[key]
+                setattr(instance, attr_name, attr_value)
+                storage.save()
+            else:
+                print("** no instance found **")
 
 
 if __name__ == '__main__':
