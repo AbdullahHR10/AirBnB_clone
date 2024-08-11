@@ -57,11 +57,10 @@ class HBNBCommand(cmd.Cmd):
         arg = parse(line)
         if len(arg) == 0:
             print("** class name missing **")
-        elif arg[0] not in HBNBCommand.classes:
+        if arg[0] not in HBNBCommand.classes:
             print("** class doesn't exist **")
-        else:
-            print(eval(arg[0])().id)
-            storage.save()
+        print(eval(arg[0])().id)
+        storage.save()
 
 
 if __name__ == '__main__':
