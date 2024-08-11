@@ -30,7 +30,14 @@ def parse(arg):
 class HBNBCommand(cmd.Cmd):
     """Contains the entry point of the command interpreter"""
     prompt = "(hbnb) "
-    classes = ["BaseModel", "User"]
+    classes = ["BaseModel",
+               "User",
+               "State",
+               "City",
+               "Amenity",
+               "Place",
+               "Review"
+               ]
 
     def do_quit(self, line):
         """Exits the program"""
