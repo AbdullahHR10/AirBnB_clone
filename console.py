@@ -77,9 +77,10 @@ class HBNBCommand(cmd.Cmd):
             class_name = args[0]
             instance_id = args[1]
             key = f"{class_name}.{instance_id}"
-            instance = storage.get(key)
-            if instance:
-                print(f"{instance}")
+            all_objects = storage.all()
+            if key in all_objects:
+                instance = all_objects(key)
+                print(instance)
             else:
                 print("** no instance found **")
 
