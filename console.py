@@ -34,10 +34,9 @@ class HBNBCommand(cmd.Cmd):
     def default(self, line):
         """Default behavior for cmd module when input is invalid"""
         commands_dict = {
-                "create": self.do_create,
-                "show": self.do_show,
-                "destroy": self.do_destroy,
                 "all": self.do_all,
+                "count": self.do_count,
+                "destroy": self.do_destroy,
                 "update": self.do_update
                 }
         if '.' in line:
@@ -164,6 +163,24 @@ class HBNBCommand(cmd.Cmd):
                 storage.save()
             else:
                 print("** no instance found **")
+
+    def do_count(self, line):
+        """Retrieves the number of instances of a class"""
+        args = parse(line)
+        i = 0
+        if len(args) == 0:
+            print("** class name missing **")
+        else:
+            class_name = args[0]
+            if class_name not in self.classes:
+                print("** class doesn't exist **")
+                return
+            count = 0
+            all_objects = storage.all()
+            for key in all_objects:
+                if key.startswith(class_name + '.'):
+                    count += 1
+            print(count)
 
 
 if __name__ == '__main__':
