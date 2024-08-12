@@ -113,14 +113,6 @@ class HBNBCommand(cmd.Cmd):
             for key, obj in all_objects.items():
                 if key.startswith(class_name + '.'):
                     instances.append(str(obj))
-        elif len(args) == 2 and args[1] == 'all':
-            class_name = args[0]
-            if class_name not in HBNBCommand.classes:
-                print("** class doesn't exist **")
-                return
-            for key, obj in all_objects.items():
-                if key.startswith(class_name + '.'):
-                    instances.append(str(obj))
         print(instances)
 
     def do_update(self, line):
