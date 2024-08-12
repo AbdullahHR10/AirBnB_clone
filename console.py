@@ -31,6 +31,28 @@ class HBNBCommand(cmd.Cmd):
                "Review"
                ]
 
+    def default(self, line):
+        """Default behavior for cmd module when input is invalid"""
+        commands_dict = {
+                "create": self.do_create,
+                "show": self.do_show,
+                "destroy": self.do_destroy,
+                "all": self.do_all,
+                "update": self.do_update
+                }
+        if '.' in line:
+            class_name, method = line.split('.')
+            if class_name not in self.classes:
+                print("** class doesn't exist **")
+                return
+            method_name = method[:-2] if method.endswith('()') else method
+            if method_name in commands_dict:
+                commands_dict[method_name](class_name)
+            else:
+                print(f"** unknown method {method} **")
+        else:
+            print(f"*** Unknown syntax: {line}")
+
     def do_quit(self, line):
         """Exits the program"""
         return True
