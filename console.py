@@ -46,7 +46,8 @@ class HBNBCommand(cmd.Cmd):
                 return
             method_name = method[:-2] if method.endswith('()') else method
             if method_name in commands_dict:
-                commands_dict[method_name](class_name)
+                if method_name == "all":
+                    commands_dict[method_name](class_name)
             else:
                 print(f"** unknown method {method} **")
         else:
