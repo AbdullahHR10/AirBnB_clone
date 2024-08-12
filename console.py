@@ -119,9 +119,7 @@ class HBNBCommand(cmd.Cmd):
             for obj in all_objects.values():
                 instances.append(str(obj))
         elif len(args) == 1:
-            class_name_all = args[0]
-            if class_name_all.endswith('.all()'):
-                class_name = class_name_all[:-5]
+            class_name = args[0]
             if class_name not in HBNBCommand.classes:
                 print("** class doesn't exist **")
                 return
