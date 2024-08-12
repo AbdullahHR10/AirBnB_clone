@@ -36,7 +36,7 @@ class HBNBCommand(cmd.Cmd):
         commands_dict = {
                 "all": self.do_all,
                 "count": self.do_count,
-                "destroy": self.do_destroy,
+                "show": self.do_show,
                 "update": self.do_update
                 }
         if '.' in line:
@@ -181,6 +181,26 @@ class HBNBCommand(cmd.Cmd):
                 if key.startswith(class_name + '.'):
                     count += 1
             print(count)
+
+    def do_show(self, line):
+        """Retrieves an instance based on its ID"""
+        args = parse(line)
+        if len(args) == 0:
+            print("** class name missing **")
+        elif len(args) == 1:
+            print("** instance id missing **")
+        else:
+            class_name = args[0]
+            instance_id = args[1]
+            if class_name not in self.classes:
+                print("** class doesn't exist **")
+                return
+            key = f"{class_name}.{instance_id}"
+            all_objects = storage.all()
+            if key not in all_objects:
+                print("** no instance found **")
+            else:
+                print(all_objects[key])
 
 
 if __name__ == '__main__':
