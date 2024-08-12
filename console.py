@@ -14,22 +14,9 @@ from models.place import Place
 from models.review import Review
 
 
-def parse(arg):
-    curly_braces = re.search(r"\{(.*?)\}", arg)
-    brackets = re.search(r"\[(.*?)\]", arg)
-    if curly_braces is None:
-        if brackets is None:
-            return [i.strip(",") for i in split(arg)]
-        else:
-            lexer = split(arg[:brackets.span()[0]])
-            retl = [i.strip(",") for i in lexer]
-            retl.append(brackets.group())
-            return retl
-    else:
-        lexer = split(arg[:curly_braces.span()[0]])
-        retl = [i.strip(",") for i in lexer]
-        retl.append(curly_braces.group())
-        return retl
+def parse(line):
+    """Parses the input line into a list of arguments."""
+    return line.strip().split()
 
 
 class HBNBCommand(cmd.Cmd):
@@ -119,6 +106,14 @@ class HBNBCommand(cmd.Cmd):
             for obj in all_objects.values():
                 instances.append(str(obj))
         elif len(args) == 1:
+            class_name = args[0]
+            if class_name not in HBNBCommand.classes:
+                print("** class doesn't exist **")
+                return
+            for key, obj in all_objects.items():
+                if key.startswith(class_name + '.'):
+                    instances.append(str(obj))
+        elif len(args) == 2 and args[1] == 'all':
             class_name = args[0]
             if class_name not in HBNBCommand.classes:
                 print("** class doesn't exist **")
