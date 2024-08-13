@@ -64,6 +64,7 @@ class HBNBCommand(cmd.Cmd):
                         return
                 elif method_name == "update":
                     if args:
+                        arg_list = []
                         if args.startswith('{') and args.endswith('}'):
                             dict_str = args[1:-1].strip()
                             if dict_str:
@@ -75,7 +76,6 @@ class HBNBCommand(cmd.Cmd):
                                 return
                             line = f"{class_name} {args_list[0]} {attrs}"
                         else:
-                            args_list = []
                             for arg in args.split(',', 2):
                                 cleaned_arg = arg.strip().strip('"')
                                 args_list.append(cleaned_arg)
