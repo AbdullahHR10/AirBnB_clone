@@ -37,7 +37,8 @@ class HBNBCommand(cmd.Cmd):
                 "all": self.do_all,
                 "count": self.do_count,
                 "show": self.do_show,
-                "destroy": self.do_destroy
+                "destroy": self.do_destroy,
+                "update": self.do_update
                 }
         if '.' in line:
             try:
@@ -54,7 +55,7 @@ class HBNBCommand(cmd.Cmd):
             if method_name in commands_dict:
                 if method_name in ["all", "count"]:
                     commands_dict[method_name](class_name)
-                elif method_name in ["show", "destroy"]:
+                elif method_name in ["show", "destroy", "update"]:
                     if args:
                         line = f"{class_name} {args}"
                         commands_dict[method_name](line)
