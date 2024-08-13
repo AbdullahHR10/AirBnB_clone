@@ -75,6 +75,8 @@ class HBNBCommand(cmd.Cmd):
                             # Format the line for do_update
                                 line = f"{class_name} {instance_id} {dict_repr}"
                                 commands_dict[method_name](line)
+                            except (SyntaxError, ValueError, IndexError):
+                                print("** invalid dictionary format **")
                         else:
                             args_list = []
                             for arg in args.split(',', 2):
