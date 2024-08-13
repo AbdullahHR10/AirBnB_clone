@@ -73,7 +73,7 @@ class HBNBCommand(cmd.Cmd):
                             if not isintance(attrs, dict):
                                 print("** invalid dictionary format **")
                                 return
-                            line = f"{class_name} {args_list[0]} {attributes}"
+                            line = f"{class_name} {args_list[0]} {attrs}"
                         else:
                             args_list = []
                             for arg in args.split(',', 2):
