@@ -64,9 +64,26 @@ class HBNBCommand(cmd.Cmd):
                         return
                 elif method_name == "update":
                     if args:
-                        if isinstance(args[0], dict):
-                            obj_dict = args[0]
-                            commands_dict[method_name](obj_dict)
+                        args_list = args.split(',', 1)
+                        if len(args_list) != 2:
+                            print("** invalid number of arguments **")
+                            return
+                        id = args_list[0].strip().strip('"')
+                        remainder = args_list[1].strip()
+                        if not id:
+                            print("** instance id missing **")
+                            return
+                        if remainder.startswith("{") and remainder.endswith("}"):
+                            try:
+                                attr_dict = eval(remainder)
+                                if not isinstance(attr_dict, dict):
+                                    raise ValueError
+                            except (SyntaxError, ValueError):
+                                print("** invalid dictionary **")
+                                return
+                            for attr_name, attr_value in attr_dict.items():
+                                line = f"{class_name} {id} {attr_name} {attr_value}"
+                                commands_dict[method_name](line)
                         else:
                             args_list = []
                             for arg in args.split(',', 2):
