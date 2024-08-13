@@ -58,3 +58,7 @@ class TestState(unittest.TestCase):
         string_rep = str(self.instance)
         expected = f"[State] ({self.instance.id}) {self.instance.__dict__}"
         self.assertEqual(string_rep, expected)
+
+
+if __name__ == "__main__":
+    unittest.main()
