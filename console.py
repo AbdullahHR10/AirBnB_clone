@@ -64,7 +64,10 @@ class HBNBCommand(cmd.Cmd):
                         return
                 elif method_name == "update":
                     if args:
-                        args_list = [arg.strip().strip('"') for arg in args.split(',', 2)]
+                        args_list = []
+                        for arg in args.split(',', 2):
+                            cleaned_arg = arg.strip().strip('"')
+                            args_list.append(cleaned_arg)
                         if len(args_list) != 3:
                             print("** invalid number of arguments **")
                             return
