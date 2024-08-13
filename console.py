@@ -55,7 +55,7 @@ class HBNBCommand(cmd.Cmd):
             if method_name in commands_dict:
                 if method_name in ["all", "count"]:
                     commands_dict[method_name](class_name)
-                elif method_name in ["show", "destroy", "update"]:
+                elif method_name in ["show", "destroy"]:
                     if args:
                         line = f"{class_name} {args}"
                         commands_dict[method_name](line)
