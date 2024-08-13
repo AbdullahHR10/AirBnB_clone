@@ -24,9 +24,9 @@ class TestState(unittest.TestCase):
         """Tests initialization with kwargs"""
         self.assertEqual(self.kwargs_instance.id, "123")
         self.assertEqual(self.kwargs_instance.created_at.isoformat(),
-                         "2005-04-03T05:30:00.000000")
+                         "2005-04-03T05:30:00")
         self.assertEqual(self.kwargs_instance.updated_at.isoformat(),
-                         "2005-04-03T05:30:00.000000"),
+                         "2005-04-03T05:30:00"),
         self.assertEqual(self.kwargs_instance.name, "Cairo")
 
     def test_no_kwargs_initialization(self):
