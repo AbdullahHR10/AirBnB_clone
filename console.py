@@ -45,9 +45,7 @@ class HBNBCommand(cmd.Cmd):
                 class_name, rest = line.split('.', 1)
                 method_name, args = rest.split('(', 1)
                 args = args.strip(')')
-
-            except ValueError as e:
-                print(f"Error: {e}")  # Debug print
+            except ValueError:
                 print(f"*** Unknown syntax: {line}")
                 return
             class_name, method = line.split('.')
