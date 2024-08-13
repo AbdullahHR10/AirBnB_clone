@@ -64,9 +64,13 @@ class HBNBCommand(cmd.Cmd):
                         return
                 elif method_name == "update":
                     if args:
-                        if isinstance(args[0], dict):
-                            obj_dict = args[0]
-                            commands_dict[method_name](obj_dict)
+                        if args.startswith('{') and args.endswith('}'):
+                            dict_repr = eval(args)
+                            if not isinstance(dict_repr, dict):
+                                print("** invalid dictionary format **")
+                                return
+                            line = f"{class_name} {args}"
+                            commands_dict[method_name](line)
                         else:
                             args_list = []
                             for arg in args.split(',', 2):
