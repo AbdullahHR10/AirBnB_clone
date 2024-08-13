@@ -2,6 +2,7 @@
 """Module that contains the console"""
 import cmd
 import re
+import ast
 from shlex import split
 from models import storage
 from models.base_model import BaseModel
@@ -66,14 +67,13 @@ class HBNBCommand(cmd.Cmd):
                     if args:
                         if args.startswith('"') and args.endswith('}'):
                             try:
-                            # Extract and parse the ID and dictionary
                                 id_end = args.index('", ') + 2
                                 instance_id = args[1:args.index('", ')]
-                                dict_repr = eval(args[id_end:])
+                                dict_repr = ast.literal_eval(args[id_end:])
                                 if not isinstance(dict_repr, dict):
                                     raise ValueError
-                            # Format the line for do_update
-                                line = f"{class_name} {instance_id} {dict_repr}"
+                                line = f
+                                "{class_name} {instance_id} {dict_repr}"
                                 commands_dict[method_name](line)
                             except (SyntaxError, ValueError, IndexError):
                                 print("** invalid dictionary format **")
@@ -95,7 +95,8 @@ class HBNBCommand(cmd.Cmd):
                             elif not attr_value:
                                 print("** value missing **")
                                 return
-                            line = f"{class_name} {id} {attr_name} {attr_value}"
+                            line = f
+                            "{class_name} {id} {attr_name} {attr_value}"
                             commands_dict[method_name](line)
                 else:
                     print(f"** unknown method {method_name} **")
