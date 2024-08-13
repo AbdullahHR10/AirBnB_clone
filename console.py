@@ -40,14 +40,29 @@ class HBNBCommand(cmd.Cmd):
                 "update": self.do_update
                 }
         if '.' in line:
+            try:
+                class_name, rest = line.split('.', 1)
+                method_name, args = rest.split('(', 1)
+                args = args.strip(')')
+            except ValueError:
+                print(f"*** Unknown syntax: {line}")
+                return
             class_name, method = line.split('.')
             if class_name not in self.classes:
                 print("** class doesn't exist **")
                 return
-            method_name = method[:-2] if method.endswith('()') else method
             if method_name in commands_dict:
-                if method_name == "all" or method_name == "count":
+                if method_name in ["all", "count"]:
                     commands_dict[method_name](class_name)
+                elif method_name in ["show", "update"]:
+                    if args:
+                        line = f"{class_name} {args}"
+                        commands_dict[method_name](line)
+                    else:
+                        print("** instance id missing **")
+                        return
+                else:
+                    print(f"** unknown method {method_name} **")
             else:
                 print(f"** unknown method {method} **")
         else:
