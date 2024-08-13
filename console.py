@@ -64,25 +64,36 @@ class HBNBCommand(cmd.Cmd):
                         return
                 elif method_name == "update":
                     if args:
-                        args_list = []
-                        for arg in args.split(',', 2):
-                            cleaned_arg = arg.strip().strip('"')
-                            args_list.append(cleaned_arg)
-                        if len(args_list) != 3:
-                            print("** invalid number of arguments **")
-                            return
-                        id, attr_name, attr_value = args_list
-                        if not id:
-                            print("** instance id missing **")
-                            return
-                        elif not attr_name:
-                            print("** attribute name missing **")
-                            return
-                        elif not attr_value:
-                            print("** value missing **")
-                            return
-                        line = f"{class_name} {id} {attr_name} {attr_value}"
-                        commands_dict[method_name](line)
+                        if args.startswith('{') and args.endswith('}'):
+                            dict_str = args[1:-1].strip()
+                            if dict_str:
+                                attrs = json.loads(f"{{{dict_str}}}")
+                            else:
+                                attrs = {}
+                            if not isintance(attrs, dict):
+                                print("** invalid dictionary format **")
+                                return
+                            line = f"{class_name} {args_list[0]} {attributes}"
+                        else:
+                            args_list = []
+                            for arg in args.split(',', 2):
+                                cleaned_arg = arg.strip().strip('"')
+                                args_list.append(cleaned_arg)
+                            if len(args_list) != 3:
+                                print("** invalid number of arguments **")
+                                return
+                            id, attr_name, attr_value = args_list
+                            if not id:
+                                print("** instance id missing **")
+                                return
+                            elif not attr_name:
+                                print("** attribute name missing **")
+                                return
+                            elif not attr_value:
+                                print("** value missing **")
+                                return
+                            line = f"{class_name} {id} {attr_name} {attr_value}"
+                            commands_dict[method_name](line)
                 else:
                     print(f"** unknown method {method_name} **")
             else:
