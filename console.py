@@ -62,6 +62,24 @@ class HBNBCommand(cmd.Cmd):
                     else:
                         print("** instance id missing **")
                         return
+                elif method_name == "update":
+                    if args:
+                        args_list = [arg.strip().strip('"') for arg in args.split(',', 2)]
+                        if len(args_list) != 3:
+                            print("** invalid number of arguments **")
+                            return
+                        id, attr_name, attr_value = args_list
+                        if not id:
+                            print("** instance id missing **")
+                            return
+                        elif not attr_name:
+                            print("** attribute name missing **")
+                            return
+                        elif not attr_value:
+                            print("** value missing **")
+                            return
+                        line = f"{class_name} {id} {attr_name} {attr_value}"
+                        commands_dict[method_name](line)
                 else:
                     print(f"** unknown method {method_name} **")
             else:
