@@ -14,8 +14,8 @@ class TestCity(unittest.TestCase):
         self.instance = City()
         kwargs = {
             "id": "123",
-            "created_at": "2005-04-03T05:30:00",
-            "updated_at": "2005-04-03T05:30:00",
+            "created_at": "2005-04-03T05:30:00:000000",
+            "updated_at": "2005-04-03T05:30:00:000000",
             "state_id": "456",
             "name": "Cairo"
         }
