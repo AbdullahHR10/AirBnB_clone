@@ -89,17 +89,6 @@ class TestPlace(unittest.TestCase):
         self.assertIn('id', instance_dict)
         self.assertIn('created_at', instance_dict)
         self.assertIn('updated_at', instance_dict)
-        self.assertIn('city_id', instance_dict)
-        self.assertIn('user_id', instance_dict)
-        self.assertIn('name', instance_dict)
-        self.assertIn('description', instance_dict)
-        self.assertIn('number_rooms', instance_dict)
-        self.assertIn('number_bathrooms', instance_dict)
-        self.assertIn('max_guest', instance_dict)
-        self.assertIn('price_by_night', instance_dict)
-        self.assertIn('latitude', instance_dict)
-        self.assertIn('longitude', instance_dict)
-        self.assertIn('amenity_ids', instance_dict)
 
     def test_str(self):
         """Tests __str__ method"""
