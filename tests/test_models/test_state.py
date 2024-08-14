@@ -26,7 +26,7 @@ class TestState(unittest.TestCase):
         self.assertEqual(self.kwargs_instance.created_at.isoformat(),
                          "2005-04-03T05:30:00")
         self.assertEqual(self.kwargs_instance.updated_at.isoformat(),
-                         "2005-04-03T05:30:00"),
+                         "2005-04-03T05:30:00")
         self.assertEqual(self.kwargs_instance.name, "Florida")
 
     def test_no_kwargs_initialization(self):
