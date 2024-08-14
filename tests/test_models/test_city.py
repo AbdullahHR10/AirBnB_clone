@@ -14,8 +14,8 @@ class TestCity(unittest.TestCase):
         self.instance = City()
         kwargs = {
             "id": "123",
-            "created_at": "2005-04-03T05:30:00:000000",
-            "updated_at": "2005-04-03T05:30:00:000000",
+            "created_at": "2005-04-03T05:30:00.000000",
+            "updated_at": "2005-04-03T05:30:00.000000",
             "state_id": "456",
             "name": "Cairo"
         }
@@ -25,9 +25,9 @@ class TestCity(unittest.TestCase):
         """Tests initialization with kwargs"""
         self.assertEqual(self.kwargs_instance.id, "123")
         self.assertEqual(self.kwargs_instance.created_at.isoformat(),
-                         "2005-04-03T05:30:00:000000")
+                         "2005-04-03T05:30:00.000000")
         self.assertEqual(self.kwargs_instance.updated_at.isoformat(),
-                         "2005-04-03T05:30:00:000000")
+                         "2005-04-03T05:30:00.000000")
         self.assertEqual(self.kwargs_instance.state_id, "456")
         self.assertEqual(self.kwargs_instance.name, "Cairo")
 
