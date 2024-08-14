@@ -57,7 +57,7 @@ class TestPlace(unittest.TestCase):
         self.assertIsInstance(self.instance.updated_at, datetime)
 
     def test_inheritance(self):
-        """Tests if State is a subclass of BaseModel"""
+        """Tests if Place is a subclass of BaseModel"""
         self.assertTrue(issubclass(Place, BaseModel))
 
     def test_attributes(self):
