@@ -45,6 +45,8 @@ class TestCity(unittest.TestCase):
         """Tests attributes"""
         self.assertIsInstance(self.instance.state_id, str)
         self.assertIsInstance(self.instance.name, str)
+        self.assertEqual(self.instance.state_id, "")
+        self.assertEqual(self.instance.name, "")
 
     def test_dict(self):
         """Tests to_dict method"""
@@ -53,13 +55,13 @@ class TestCity(unittest.TestCase):
         self.assertEqual(instance_dict['__class__'], 'City')
         self.assertIn('id', instance_dict)
         self.assertIn('created_at', instance_dict)
-        self.assertIn('updated_at', instance_dict)
+        self.assertIn('updated_at', instance_dict)        
 
     def test_str(self):
         """Tests __str__ method"""
         string_rep = str(self.instance)
         expected = f"[City] ({self.instance.id}) {self.instance.__dict__}"
-        self.assertEqual(string_rep, expected)
+        self.assertEqual(string_rep, expected)        
 
 
 if __name__ == "__main__":
