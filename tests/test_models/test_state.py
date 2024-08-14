@@ -16,7 +16,7 @@ class TestState(unittest.TestCase):
             "id": "123",
             "created_at": "2005-04-03T05:30:00.000000",
             "updated_at": "2005-04-03T05:30:00.000000",
-            "name": "Cairo"
+            "name": "Florida"
         }
         self.kwargs_instance = State(**kwargs)
 
@@ -27,7 +27,7 @@ class TestState(unittest.TestCase):
                          "2005-04-03T05:30:00")
         self.assertEqual(self.kwargs_instance.updated_at.isoformat(),
                          "2005-04-03T05:30:00"),
-        self.assertEqual(self.kwargs_instance.name, "Cairo")
+        self.assertEqual(self.kwargs_instance.name, "Florida")
 
     def test_no_kwargs_initialization(self):
         """Tests initialization without kwargs"""
