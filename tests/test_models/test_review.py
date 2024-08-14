@@ -28,7 +28,7 @@ class TestReview(unittest.TestCase):
         self.assertEqual(self.kwargs_instance.created_at.isoformat(),
                          "2005-04-03T05:30:00")
         self.assertEqual(self.kwargs_instance.updated_at.isoformat(),
-                         "2005-04-03T05:30:00"),
+                         "2005-04-03T05:30:00")
         self.assertEqual(self.kwargs_instance.place_id, "123")
         self.assertEqual(self.kwargs_instance.user_id, "456")
         self.assertEqual(self.kwargs_instance.text, "This is text")
