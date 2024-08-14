@@ -8,7 +8,7 @@ from models.base_model import BaseModel
 
 class TestState(unittest.TestCase):
     """Unittests that tests State class"""
-    
+
     def setUp(self):
         """Sets up environment for tests"""
         self.instance = State()
