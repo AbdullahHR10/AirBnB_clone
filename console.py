@@ -69,22 +69,21 @@ class HBNBCommand(cmd.Cmd):
                             print("** invalid number of arguments **")
                             return
                         id = args_list[0].strip().strip('"')
-                        remainder = args_list[1].strip()
+                        rd = args_list[1].strip()
                         if not id:
                             print("** instance id missing **")
                             return
-                        if remainder.startswith("{") and
-                        remainder.endswith("}"):
+                        if rd.startswith("{") and rd.endswith("}"):
                             try:
-                                attr_dict = eval(remainder)
+                                attr_dict = eval(rd)
                                 if not isinstance(attr_dict, dict):
                                     raise ValueError
                             except (SyntaxError, ValueError):
                                 print("** invalid dictionary **")
                                 return
                             for attr_name, attr_value in attr_dict.items():
-                                line =
-                                f"{class_name} {id} {attr_name} {attr_value}"
+                                line = (f"{class_name} {id} "
+                                        f"{attr_name} {attr_value}")
                                 commands_dict[method_name](line)
                         else:
                             args_list = []
@@ -104,8 +103,8 @@ class HBNBCommand(cmd.Cmd):
                             elif not attr_value:
                                 print("** value missing **")
                                 return
-                            line =
-                            f"{class_name} {id} {attr_name} {attr_value}"
+                            line = (f"{class_name} {id} "
+                                    f"{attr_name} {attr_value}")
                             commands_dict[method_name](line)
                 else:
                     print(f"** unknown method {method_name} **")
