@@ -21,8 +21,8 @@ class TestFileStorage(unittest.TestCase):
             os.remove("file.json")
         except FileNotFoundError:
             pass
-        self.storage.__objects = {}
-        self.storage.save()
+        models.storage.__objects = {}
+        models.storage.save()
 
     def test_all(self):
         """Tests all method"""
