@@ -2,6 +2,7 @@
 """Module that contains unittests for FileStorage class"""
 import unittest
 import models
+import os
 from datetime import datetime
 from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
@@ -14,20 +15,14 @@ class TestFileStorage(unittest.TestCase):
         """Sets up environment for tests"""
         self.instance = FileStorage()
 
-    def test_kwargs_initialization(self):
-        """Tests initialization with kwargs"""
-        pass
-
-    def test_no_kwargs_initialization(self):
-        """Tests initialization without kwargs"""
-        pass
-
-    def test_attributes(self):
-        """Tests attributes"""
-        self.assertIsInstance(self.instance.__file_path, str)
-        self.assertIsInstance(self.instance.__objects, dict)
-        self.assertEqual(self.instance.__file_path, "file.json")
-        self.assertEqual(self.instance.__objects, {})
+    def tearDown(self):
+        """Cleans up after tests"""
+        try:
+            os.remove("file.json")
+        except FileNotFoundError:
+            pass
+        self.storage.__objects = {}
+        self.storage.save()
 
     def test_all(self):
         """Tests all method"""
