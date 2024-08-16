@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Module that contains unittests for BaseModel class"""
+"""Module that contains unittests for FileStorage class"""
 import unittest
 import models
 from datetime import datetime
@@ -7,8 +7,8 @@ from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
 
 
-class TestBaseModel(unittest.TestCase):
-    """Unittests that tests BaseModel class"""
+class TestFileStorage(unittest.TestCase):
+    """Unittests that tests FileStorage class"""
 
     def setUp(self):
         """Sets up environment for tests"""
