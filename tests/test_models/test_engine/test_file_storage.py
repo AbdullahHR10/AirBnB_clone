@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Module that contains unittests for BaseModel class"""
+"""Module that contains unittests for FileStorage class"""
 import unittest
 import models
 import json
@@ -7,21 +7,13 @@ from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
 
 
-class TestBaseModel(unittest.TestCase):
-    """Unittests that tests BaseModel class"""
+class TestFileStorage(unittest.TestCase):
+    """Unittests that tests FileStorage class"""
 
     def setUp(self):
         """Sets up environment for tests"""
         models.storage = FileStorage()
         self.instance = BaseModel()
-
-    def test_kwargs_initialization(self):
-        """Tests initialization with kwargs"""
-        pass
-
-    def test_no_kwargs_initialization(self):
-        """Tests initialization without kwargs"""
-        pass
 
     def test_attributes(self):
         """Tests attributes"""
@@ -59,7 +51,8 @@ class TestBaseModel(unittest.TestCase):
         models.storage.save()
         models.storage.reload()
         objs = FileStorage._FileStorage__objects
-        self.assertIn(f"{self.instance.__class__.__name__}" + self.instance.id , objs)
+        self.assertIn(f"{self.instance.__class__.__name__}" +
+                      self.instance.id, objs)
 
 
 if __name__ == "__main__":
