@@ -38,6 +38,19 @@ class TestBaseModel(unittest.TestCase):
         self.assertIsInstance(self.instance.created_at, datetime)
         self.assertIsInstance(self.instance.updated_at, datetime)
 
+    def test_str(self):
+        """Tests __str__ method"""
+        string_rep = str(self.instance)
+        expected = f"[BaseModel] ({self.instance.id}) {self.instance.__dict__}"
+        self.assertEqual(string_rep, expected)   
+
+    def test_save(self):
+        """Tests save method"""
+        old_updated_at = self.instance.updated_at
+        self.instance.save()
+        self.assertIsInstance(self.updated_at, datetime)
+        self.assertNotEqual(self.instance.updated_at, old_updated_at)
+
     def test_dict(self):
         """Tests to_dict method"""
         instance_dict = self.instance.to_dict()
@@ -45,13 +58,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(instance_dict['__class__'], 'BaseModel')
         self.assertIn('id', instance_dict)
         self.assertIn('created_at', instance_dict)
-        self.assertIn('updated_at', instance_dict)        
-
-    def test_str(self):
-        """Tests __str__ method"""
-        string_rep = str(self.instance)
-        expected = f"[BaseModel] ({self.instance.id}) {self.instance.__dict__}"
-        self.assertEqual(string_rep, expected)        
+        self.assertIn('updated_at', instance_dict)             
 
 
 if __name__ == "__main__":
