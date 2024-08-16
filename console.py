@@ -73,7 +73,8 @@ class HBNBCommand(cmd.Cmd):
                         if not id:
                             print("** instance id missing **")
                             return
-                        if remainder.startswith("{") and remainder.endswith("}"):
+                        if remainder.startswith("{") and
+                        remainder.endswith("}"):
                             try:
                                 attr_dict = eval(remainder)
                                 if not isinstance(attr_dict, dict):
@@ -82,7 +83,8 @@ class HBNBCommand(cmd.Cmd):
                                 print("** invalid dictionary **")
                                 return
                             for attr_name, attr_value in attr_dict.items():
-                                line = f"{class_name} {id} {attr_name} {attr_value}"
+                                line =
+                                f"{class_name} {id} {attr_name} {attr_value}"
                                 commands_dict[method_name](line)
                         else:
                             args_list = []
@@ -102,7 +104,8 @@ class HBNBCommand(cmd.Cmd):
                             elif not attr_value:
                                 print("** value missing **")
                                 return
-                            line = f"{class_name} {id} {attr_name} {attr_value}"
+                            line =
+                            f"{class_name} {id} {attr_name} {attr_value}"
                             commands_dict[method_name](line)
                 else:
                     print(f"** unknown method {method_name} **")
