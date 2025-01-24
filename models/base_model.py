@@ -1,27 +1,37 @@
 #!/usr/bin/python3
-""" Doc. """
+"""
+Module that contains the BaseModl class.
+
+This class defines all common attributes/methods for all other classes
+in the website.
+"""
 
 from uuid import uuid4
 from datetime import datetime
 
 
 class BaseModel():
-    """
-    Defines all common attributes/methods for other classes.
-
-    Attributes:
-
-    """
-    def __init__(self):
+    """ Defines all common attributes/methods for other classes. """
+    def __init__(self, *args, **kwargs):
         """
         Initializes a new BaseModel instance.
 
         Parameters:
-
+            args: Positional arguments.
+            kwargs: Keyword arguments.
         """
-        self.id = str(uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
+        if kwargs:
+            # Loop through kwargs items
+            for key, value in kwargs.items():
+                if key != "__class__":
+                    # Check if the key needs to be iso formated
+                    if key in ['created_at', 'updated_at']:
+                        value = datetime.fromisoformat(value)
+                    setattr(self, key, value)
+        else:
+            self.id = str(uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
 
     def save(self):
         """ Updates `updated_at` attribute with the current datetime. """
